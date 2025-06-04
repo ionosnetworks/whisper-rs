@@ -49,16 +49,17 @@ fn main() {
     }
     #[cfg(feature = "cuda")]
     {
-        println!("cargo:rustc-link-lib=dylib=cublas");
-        println!("cargo:rustc-link-lib=dylib=cudart");
-        println!("cargo:rustc-link-lib=dylib=cublasLt");
+        println!("cargo:rustc-link-lib=static=cudart_static");
+        println!("cargo:rustc-link-lib=static=cublas_static");
+        println!("cargo:rustc-link-lib=static=cublasLt_static");
         println!("cargo:rustc-link-lib=dylib=cuda");
         cfg_if::cfg_if! {
             if #[cfg(target_os = "windows")] {
                 let cuda_path = PathBuf::from(env::var("CUDA_PATH").unwrap()).join("lib/x64");
                 println!("cargo:rustc-link-search={}", cuda_path.display());
             } else {
-                println!("cargo:rustc-link-lib=dylib=culibos");
+                // println!("cargo:rustc-link-lib=dylib=culibos");
+                // println!("cargo:rustc-link-lib=static=culibos_static");
                 println!("cargo:rustc-link-search=/usr/local/cuda/lib64");
                 println!("cargo:rustc-link-search=/usr/local/cuda/lib64/stubs");
                 println!("cargo:rustc-link-search=/opt/cuda/lib64");
