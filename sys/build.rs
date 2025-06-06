@@ -59,9 +59,9 @@ fn main() {
                 println!("cargo:rustc-link-search={}", cuda_path.display());
             } else {
                 // println!("cargo:rustc-link-lib=dylib=culibos");
-                println!("cargo:rustc-link-search=/usr/local/cuda/lib64");
+                //println!("cargo:rustc-link-search=/usr/local/cuda/lib64");
                 println!("cargo:rustc-link-search=/usr/local/cuda/lib64/stubs");
-                println!("cargo:rustc-link-search=/opt/cuda/lib64");
+                //println!("cargo:rustc-link-search=/opt/cuda/lib64");
                 println!("cargo:rustc-link-search=/opt/cuda/lib64/stubs");
             }
         }
