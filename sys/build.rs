@@ -50,8 +50,8 @@ fn main() {
     #[cfg(feature = "cuda")]
     {
         println!("cargo:rustc-link-lib=dylib=cublas");
-        println!("cargo:rustc-link-lib=dylib=cudart");
         println!("cargo:rustc-link-lib=dylib=cublasLt");
+        println!("cargo:rustc-link-lib=dylib=cudart");
         println!("cargo:rustc-link-lib=dylib=cuda");
         cfg_if::cfg_if! {
             if #[cfg(target_os = "windows")] {
@@ -175,6 +175,7 @@ fn main() {
 
     if cfg!(feature = "cuda") {
         config.define("GGML_CUDA", "ON");
+        config.define("CMAKE_CUDA_ARCHITECTURES", "80;86;89");
     }
 
     if cfg!(feature = "hipblas") {
